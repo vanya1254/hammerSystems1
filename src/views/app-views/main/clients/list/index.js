@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import { Card, Table, Tag, Tooltip, message, Button } from "antd";
-import { EyeOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EyeOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import ClientView from "./ClientView";
 import AvatarStatus from "components/shared-components/AvatarStatus";
 import clientsService from "services/ClientsService";
+import ClientEdit from "./ClientEdit";
 
 export class List extends Component {
   state = {
     clients: [],
     isLoading: true,
     clientProfileVisible: false,
+    clientEditVisible: false,
     selectedClient: null,
   };
 
@@ -50,9 +52,34 @@ export class List extends Component {
     });
   };
 
+  showClientEdit = (clientInfo) => {
+    this.setState({
+      clientEditVisible: true,
+      selectedClient: clientInfo,
+    });
+  };
+
+  closeClientEdit = (editedClient) => {
+    const newClients = this.state.clients.filter(
+      (client) => client.id !== editedClient.id
+    );
+    newClients.push(editedClient);
+
+    this.setState({
+      clients: newClients,
+      clientEditVisible: false,
+      selectedClient: null,
+    });
+  };
+
   render() {
-    const { clients, isLoading, clientProfileVisible, selectedClient } =
-      this.state;
+    const {
+      clients,
+      isLoading,
+      clientProfileVisible,
+      clientEditVisible,
+      selectedClient,
+    } = this.state;
 
     const tableColumns = [
       {
@@ -114,6 +141,16 @@ export class List extends Component {
         dataIndex: "actions",
         render: (_, elm) => (
           <div className="text-right">
+            <Tooltip title="Edit">
+              <Button
+                type="text"
+                className="mr-2"
+                style={{ backgroundColor: "bisque" }}
+                icon={<EditOutlined />}
+                onClick={() => this.showClientEdit(elm)}
+                size="small"
+              />
+            </Tooltip>
             <Tooltip title="View">
               <Button
                 type="primary"
@@ -141,12 +178,16 @@ export class List extends Component {
     ];
     return (
       <Card bodyStyle={{ padding: "0px" }}>
-        <Table
-          columns={tableColumns}
-          loading={isLoading}
-          dataSource={clients}
-          rowKey="id"
-        />
+        {clientEditVisible ? (
+          <ClientEdit data={selectedClient} close={this.closeClientEdit} />
+        ) : (
+          <Table
+            columns={tableColumns}
+            loading={isLoading}
+            dataSource={clients}
+            rowKey="id"
+          />
+        )}
         <ClientView
           data={selectedClient}
           visible={clientProfileVisible}
