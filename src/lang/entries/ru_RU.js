@@ -3,7 +3,7 @@ import ruMsg from "../locales/ru_RU.json";
 
 const RuLang = {
   antd: antdRuRU,
-  locale: "ru_RU",
+  locale: "ru-RU",
   messages: {
     ...ruMsg,
   },

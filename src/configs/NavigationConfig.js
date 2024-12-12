@@ -20,14 +20,14 @@ const mainNavTree = [
     path: `${APP_PREFIX_PATH}/main`,
     title: "sidenav.main",
     icon: DashboardOutlined,
-    breadcrumb: true,
+    breadcrumb: false,
     submenu: [
       {
         key: "main-dashboard",
         path: `${APP_PREFIX_PATH}/main/dashboard`,
         title: "sidenav.main.dashboard",
         icon: DashboardOutlined,
-        breadcrumb: true,
+        breadcrumb: false,
         submenu: [],
       },
       {
@@ -171,7 +171,7 @@ const systemNavTree = [
     path: `${APP_PREFIX_PATH}/main`,
     title: "sidenav.system",
     icon: SettingOutlined,
-    breadcrumb: true,
+    breadcrumb: false,
     submenu: [
       {
         key: "system-settings",
