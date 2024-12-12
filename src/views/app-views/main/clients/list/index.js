@@ -1,16 +1,32 @@
 import React, { Component } from "react";
 import { Card, Table, Tag, Tooltip, message, Button } from "antd";
 import { EyeOutlined, DeleteOutlined } from "@ant-design/icons";
-import moment from "moment";
 import ClientView from "./ClientView";
 import AvatarStatus from "components/shared-components/AvatarStatus";
-import clientData from "assets/data/user-list.data.json";
+import clientsService from "services/ClientsService";
 
 export class List extends Component {
   state = {
-    clients: clientData,
+    clients: [],
+    isLoading: true,
     clientProfileVisible: false,
     selectedClient: null,
+  };
+
+  componentDidMount() {
+    this.getClients();
+  }
+
+  getClients = async () => {
+    try {
+      this.setState({ isLoading: true });
+      const response = await clientsService.getPost();
+
+      this.setState({ clients: response, isLoading: false });
+    } catch (error) {
+      this.setState({ error: error.message, isLoading: false });
+      message.error("Failed to get clients");
+    }
   };
 
   deleteClient = (clientId) => {
@@ -35,7 +51,8 @@ export class List extends Component {
   };
 
   render() {
-    const { clients, clientProfileVisible, selectedClient } = this.state;
+    const { clients, isLoading, clientProfileVisible, selectedClient } =
+      this.state;
 
     const tableColumns = [
       {
@@ -44,7 +61,7 @@ export class List extends Component {
         render: (_, record) => (
           <div className="d-flex">
             <AvatarStatus
-              src={record.img}
+              src={`/img/avatars/thumb-${record.id}.jpg`}
               name={record.name}
               subTitle={record.email}
             />
@@ -59,34 +76,37 @@ export class List extends Component {
         },
       },
       {
-        title: "Role",
-        dataIndex: "role",
+        title: "Username",
+        dataIndex: "username",
         sorter: {
-          compare: (a, b) => a.role.length - b.role.length,
+          compare: (a, b) => {
+            a = a.username.toLowerCase();
+            b = b.username.toLowerCase();
+            return a > b ? -1 : b > a ? 1 : 0;
+          },
         },
       },
       {
-        title: "Last online",
-        dataIndex: "lastOnline",
-        render: (date) => (
-          <span>{moment.unix(date).format("MM/DD/YYYY")} </span>
-        ),
-        sorter: (a, b) =>
-          moment(a.lastOnline).unix() - moment(b.lastOnline).unix(),
+        title: "Website",
+        dataIndex: "website",
+        sorter: {
+          compare: (a, b) => {
+            a = a.website.toLowerCase();
+            b = b.website.toLowerCase();
+            return a > b ? -1 : b > a ? 1 : 0;
+          },
+        },
       },
       {
-        title: "Status",
-        dataIndex: "status",
-        render: (status) => (
-          <Tag
-            className="text-capitalize"
-            color={status === "active" ? "cyan" : "red"}
-          >
-            {status}
+        title: "Phone",
+        dataIndex: "phone",
+        render: (phone) => (
+          <Tag className="text-capitalize" color={"cyan"}>
+            {phone.split(" ")[0]}
           </Tag>
         ),
         sorter: {
-          compare: (a, b) => a.status.length - b.status.length,
+          compare: (a, b) => a.phone.length - b.phone.length,
         },
       },
       {
@@ -121,7 +141,12 @@ export class List extends Component {
     ];
     return (
       <Card bodyStyle={{ padding: "0px" }}>
-        <Table columns={tableColumns} dataSource={clients} rowKey="id" />
+        <Table
+          columns={tableColumns}
+          loading={isLoading}
+          dataSource={clients}
+          rowKey="id"
+        />
         <ClientView
           data={selectedClient}
           visible={clientProfileVisible}

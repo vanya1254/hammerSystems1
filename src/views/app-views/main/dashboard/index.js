@@ -33,7 +33,7 @@ import {
   ReloadOutlined,
 } from "@ant-design/icons";
 import utils from "utils";
-import exampleService from "services/ExampleService";
+import exampleService from "services/ClientsService";
 import { withRouter } from "react-router-dom";
 const MembersChart = (props) => <ApexChart {...props} />;
 
