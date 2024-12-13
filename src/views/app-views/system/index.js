@@ -16,7 +16,7 @@ const System = ({ match }) => {
         />
         <Route
           path={`${match.url}/logs`}
-          component={lazy(() => import(`./logs`))}
+          component={lazy(() => import(`./changelogs`))}
         />
         <Redirect from={`${match.url}`} to={`${match.url}/settings`} />
       </Switch>
