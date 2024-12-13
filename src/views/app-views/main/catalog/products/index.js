@@ -54,25 +54,6 @@ const Products = () => {
     history.push(`/app/apps/ecommerce/add-product`);
   };
 
-  const viewDetails = (row) => {
-    history.push(`/app/apps/ecommerce/edit-product/${row.id}`);
-  };
-
-  const deleteRow = (row) => {
-    const objKey = "id";
-    let data = list;
-    if (selectedRows.length > 1) {
-      selectedRows.forEach((elm) => {
-        data = utils.deleteArrayRow(data, objKey, elm.id);
-        setList(data);
-        setSelectedRows([]);
-      });
-    } else {
-      data = utils.deleteArrayRow(data, objKey, row.id);
-      setList(data);
-    }
-  };
-
   const tableColumns = [
     {
       title: "ID",
