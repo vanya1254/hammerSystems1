@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Card, Table, Select, Input, Button, Badge } from "antd";
 import ProductsListData from "assets/data/product-list.data.json";
