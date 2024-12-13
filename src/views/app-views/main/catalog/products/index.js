@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Card, Table, Select, Input, Button, Badge, Menu } from "antd";
+import { Card, Table, Select, Input, Button, Badge } from "antd";
 import ProductsListData from "assets/data/product-list.data.json";
 import {
-  EyeOutlined,
-  DeleteOutlined,
   SearchOutlined,
   PlusCircleOutlined,
   EllipsisOutlined,
@@ -51,27 +49,6 @@ const Products = () => {
   const [list, setList] = useState(ProductsListData);
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-
-  const dropdownMenu = (row) => (
-    <Menu>
-      <Menu.Item onClick={() => viewDetails(row)}>
-        <Flex alignItems="center">
-          <EyeOutlined />
-          <span className="ml-2">View Details</span>
-        </Flex>
-      </Menu.Item>
-      <Menu.Item onClick={() => deleteRow(row)}>
-        <Flex alignItems="center">
-          <DeleteOutlined />
-          <span className="ml-2">
-            {selectedRows.length > 0
-              ? `Delete (${selectedRows.length})`
-              : "Delete"}
-          </span>
-        </Flex>
-      </Menu.Item>
-    </Menu>
-  );
 
   const addProduct = () => {
     history.push(`/app/apps/ecommerce/add-product`);

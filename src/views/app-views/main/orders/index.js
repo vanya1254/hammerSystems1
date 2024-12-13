@@ -1,12 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Card, Table, Select, Input, Button, Badge, Menu, Tag } from "antd";
+import { Card, Table, Select, Input, Button, Badge, Tag } from "antd";
 import OrderListData from "assets/data/order-list.data.json";
 import {
-  EyeOutlined,
   FileExcelOutlined,
   SearchOutlined,
-  PlusCircleOutlined,
   EllipsisOutlined,
 } from "@ant-design/icons";
 import AvatarStatus from "components/shared-components/AvatarStatus";
@@ -57,23 +55,6 @@ const Orders = () => {
       setList(OrderListData);
     }
   };
-
-  const dropdownMenu = (row) => (
-    <Menu>
-      <Menu.Item>
-        <Flex alignItems="center">
-          <EyeOutlined />
-          <span className="ml-2">View Details</span>
-        </Flex>
-      </Menu.Item>
-      <Menu.Item>
-        <Flex alignItems="center">
-          <PlusCircleOutlined />
-          <span className="ml-2">Add to remark</span>
-        </Flex>
-      </Menu.Item>
-    </Menu>
-  );
 
   const tableColumns = [
     {
