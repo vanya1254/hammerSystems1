@@ -2,6 +2,14 @@ import fetch from "auth/FetchInterceptor";
 
 const clientsService = {};
 
+clientsService.fetchData = function (params) {
+  return fetch({
+    url: "/users",
+    method: "get",
+    params,
+  });
+};
+
 clientsService.getPost = function (params) {
   return fetch({
     url: "/users",

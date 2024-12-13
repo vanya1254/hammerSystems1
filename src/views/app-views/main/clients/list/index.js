@@ -22,7 +22,7 @@ export class List extends Component {
   getClients = async () => {
     try {
       this.setState({ isLoading: true });
-      const response = await clientsService.getPost();
+      const response = await clientsService.fetchData();
 
       this.setState({ clients: response, isLoading: false });
     } catch (error) {
