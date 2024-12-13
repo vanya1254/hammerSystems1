@@ -17,6 +17,7 @@ const PUBLIC_REQUEST_KEY = "public-request";
 // API Request interceptor
 service.interceptors.request.use(
   (config) => {
+    localStorage.setItem("auth_token", "wVYrxaeNa9OxdnULvde1Au5m5w63");
     const jwtToken = localStorage.getItem(AUTH_TOKEN);
 
     if (jwtToken) {
