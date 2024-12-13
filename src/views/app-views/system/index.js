@@ -15,7 +15,7 @@ const System = ({ match }) => {
           component={lazy(() => import(`./mobileApp`))}
         />
         <Route
-          path={`${match.url}/logs`}
+          path={`${match.url}/changelogs`}
           component={lazy(() => import(`./changelogs`))}
         />
         <Redirect from={`${match.url}`} to={`${match.url}/settings`} />

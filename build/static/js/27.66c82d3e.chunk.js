@@ -1,0 +1,2 @@
+(this.webpackJsonpemilus=this.webpackJsonpemilus||[]).push([[27],{583:function(e,s,c){"use strict";c.r(s);c(0);var t=c(45),n=c(5);var r=()=>Object(n.jsx)("div",{children:"Addresses"});var a=()=>Object(n.jsx)("div",{children:"Geozones"});s.default=e=>{let{match:s}=e;return Object(n.jsxs)(t.d,{children:[Object(n.jsx)(t.a,{exact:!0,from:"".concat(s.url),to:"".concat(s.url,"/addresses")}),Object(n.jsx)(t.b,{path:"".concat(s.url,"/addresses"),component:r}),Object(n.jsx)(t.b,{path:"".concat(s.url,"/geozones"),component:a})]})}}}]);
+//# sourceMappingURL=27.66c82d3e.chunk.js.map

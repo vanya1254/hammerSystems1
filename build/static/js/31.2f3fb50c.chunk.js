@@ -1,0 +1,2 @@
+(this.webpackJsonpemilus=this.webpackJsonpemilus||[]).push([[31],{575:function(s,e,i){"use strict";i.r(e);i(0);var p=i(5);e.default=()=>Object(p.jsx)("div",{children:"mobileApp"})}}]);
+//# sourceMappingURL=31.2f3fb50c.chunk.js.map

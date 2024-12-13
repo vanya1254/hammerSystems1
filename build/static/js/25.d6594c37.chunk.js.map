@@ -1,0 +1,1 @@
+{"version":3,"sources":["views/app-views/main/employees/index.js"],"names":["Employees","_jsx","children"],"mappings":"mGAAA,uBAMeA,UAJGA,IACTC,cAAA,OAAAC,SAAK,a","file":"static/js/25.d6594c37.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nconst Employees = () => {\r\n  return <div>Employees</div>;\r\n};\r\n\r\nexport default Employees;\r\n"],"sourceRoot":""}
