@@ -1,0 +1,2 @@
+(this.webpackJsonpemilus=this.webpackJsonpemilus||[]).push([[28],{553:function(s,e,i){"use strict";i.r(e);i(0);var c=i(5);e.default=()=>Object(c.jsx)("div",{children:"Promocodes"})}}]);
+//# sourceMappingURL=28.ee029adc.chunk.js.map
